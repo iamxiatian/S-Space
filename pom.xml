@@ -77,6 +77,11 @@
     </site>
   </distributionManagement>
 
+  <properties>
+      <maven.javadoc.skip>true</maven.javadoc.skip>
+      <maven.test.skip>true</maven.test.skip>
+  </properties>
+  
   <dependencies>
     <dependency>
       <groupId>net.sf.trove4j</groupId>
