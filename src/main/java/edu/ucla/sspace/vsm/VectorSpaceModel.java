@@ -27,23 +27,20 @@ import edu.ucla.sspace.basis.StringBasisMapping;
 import edu.ucla.sspace.common.SemanticSpace;
 import edu.ucla.sspace.common.GenericTermDocumentVectorSpace;
 
-import edu.ucla.sspace.matrix.MatrixBuilder;
-import edu.ucla.sspace.matrix.MatrixFile;
-import edu.ucla.sspace.matrix.MatrixIO;
+import edu.ucla.sspace.common.SemanticSpaceIO;
+import edu.ucla.sspace.matrix.*;
 import edu.ucla.sspace.matrix.MatrixIO.Format;
-import edu.ucla.sspace.matrix.SvdlibcSparseBinaryMatrixBuilder;
-import edu.ucla.sspace.matrix.Transform;
 
 import edu.ucla.sspace.util.ReflectionUtil;
 
 import edu.ucla.sspace.vector.DoubleVector;
+import edu.ucla.sspace.vector.VectorIO;
 
-import java.io.File;
-import java.io.IOError;
-import java.io.IOException;
+import java.io.*;
 
 import java.util.Properties;
 
+import java.util.Set;
 import java.util.concurrent.ConcurrentMap;;
 
 
@@ -244,5 +241,13 @@ public class VectorSpaceModel extends GenericTermDocumentVectorSpace {
         } catch (IOException ioe) {
             throw new IOError(ioe);
         }
+    }
+
+    public Matrix getWordSpace() {
+        return wordSpace;
+    }
+
+    public void saveSpace(File f) throws IOException {
+
     }
 }

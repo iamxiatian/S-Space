@@ -176,7 +176,7 @@ public abstract class GenericTermDocumentVectorSpace
         System.out.println("Saving matrix using " + termDocumentMatrixBuilder);
 
         wordSpace = null;
-    }   
+    }
 
     /**
      * Tokenizes the document using the {@link IteratorFactory} and updates the
@@ -190,6 +190,24 @@ public abstract class GenericTermDocumentVectorSpace
      * @param document {@inheritDoc}
      */
     public void processDocument(BufferedReader document) throws IOException {
+        Iterator<String> documentTokens = IteratorFactory.tokenize(document);
+        processDocument(documentTokens);
+
+        document.close();
+    }
+
+    /**
+     * Tokenizes the document using the {@link IteratorFactory} and updates the
+     * term-document frequency counts.
+     *
+     * <p>
+     *
+     * This method is thread-safe and may be called in parallel with separate
+     * documents to speed up overall processing time.
+     *
+     * @param documentTokens {@inheritDoc}
+     */
+    public void processDocument(Iterator<String> documentTokens) throws IOException {
         // Create a mapping for each term that is seen in the document to the
         // number of times it has been seen.  This mapping would more elegantly
         // be a SparseArray<Integer> however, the length of the sparse array
@@ -199,7 +217,7 @@ public abstract class GenericTermDocumentVectorSpace
         // converted to its index form for each occurrence, which results in a
         // double Map look-up.
         Counter<String> termCounts = new ObjectCounter<String>();
-        Iterator<String> documentTokens = IteratorFactory.tokenize(document);
+        //Iterator<String> documentTokens = IteratorFactory.tokenize(document);
 
         // Increaes the count of documents observed so far.
         int docCount = documentCounter.getAndAdd(1);
@@ -228,7 +246,7 @@ public abstract class GenericTermDocumentVectorSpace
             termCounts.count(word);
         }
 
-        document.close();
+        //document.close();
         System.out.printf("Saw %d terms, %d unique%n", termCounts.sum(), termCounts.size());
         
         // Check that we actually loaded in some terms before we increase the
