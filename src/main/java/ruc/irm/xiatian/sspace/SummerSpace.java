@@ -11,7 +11,7 @@ import edu.ucla.sspace.vsm.VectorSpaceModel;
 import java.io.*;
 import java.util.Properties;
 
-import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertEquals;
 
 /**
  * Created by xiatian on 4/4/16.
