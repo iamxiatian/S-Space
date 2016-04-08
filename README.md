@@ -1,3 +1,15 @@
+S-Space++
+==============================
+利用S-Space进行文本分析，已经实现的功能：
+
+1. 利用S-Space提供的VectorSpaceModel实现文档频度的统计
+
+
+
+
+
+S-Space
+--------------------------------
 The S-Space Package is a collection of algorithms for building Semantic Spaces
 as well as a highly-scalable library for designing new distributional semantics
 algorithms. Distributional algorithms process text corpora and represent the
