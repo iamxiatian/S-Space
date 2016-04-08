@@ -10,6 +10,9 @@ import edu.ucla.sspace.vsm.VectorSpaceModel;
 
 import java.io.*;
 import java.util.Properties;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
 //import static org.junit.Assert.assertEquals;
 
@@ -64,6 +67,5 @@ public class SummerSpace {
         SummerSpace space = new SummerSpace();
         File dir = new File("/home/xiatian/data/20news-subject");
         space.build(dir);
-
     }
 }
