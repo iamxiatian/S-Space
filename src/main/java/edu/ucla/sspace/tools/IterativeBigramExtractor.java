@@ -22,72 +22,22 @@
 package edu.ucla.sspace.tools;
 
 import edu.ucla.sspace.common.ArgOptions;
+import edu.ucla.sspace.common.statistics.ChiSquaredTest;
+import edu.ucla.sspace.common.statistics.GTest;
+import edu.ucla.sspace.common.statistics.PointwiseMutualInformationTest;
+import edu.ucla.sspace.common.statistics.SignificanceTest;
+import edu.ucla.sspace.text.*;
+import edu.ucla.sspace.util.*;
 
-import edu.ucla.sspace.common.statistics.*;
-
-import edu.ucla.sspace.clustering.Assignment;
-
-import edu.ucla.sspace.graph.Graph;
-import edu.ucla.sspace.graph.Graphs;
-import edu.ucla.sspace.graph.LinkClustering;
-import edu.ucla.sspace.graph.WeightedEdge;
-import edu.ucla.sspace.graph.WeightedGraph;
-import edu.ucla.sspace.graph.SparseWeightedGraph;
-import edu.ucla.sspace.graph.SimpleWeightedEdge;
-
-import edu.ucla.sspace.text.BufferedFileListDocumentIterator;
-import edu.ucla.sspace.text.IteratorFactory;
-import edu.ucla.sspace.text.StringUtils;
-import edu.ucla.sspace.text.TermAssociationFinder;
-import edu.ucla.sspace.text.WordIterator;
-import edu.ucla.sspace.text.Document;
-import edu.ucla.sspace.text.FileListDocumentIterator;
-import edu.ucla.sspace.text.IteratorFactory;
-import edu.ucla.sspace.text.OneLinePerDocumentIterator;
-
-import edu.ucla.sspace.util.Counter;
-import edu.ucla.sspace.util.CombinedIterator;
-import edu.ucla.sspace.util.HashIndexer;
-import edu.ucla.sspace.util.HashMultiMap;
-import edu.ucla.sspace.util.Indexer;
-import edu.ucla.sspace.util.LineReader;
-import edu.ucla.sspace.util.LoggerUtil;
-import edu.ucla.sspace.util.MultiMap;
-import edu.ucla.sspace.util.ObjectCounter;
-import edu.ucla.sspace.util.ObjectIndexer;
-import edu.ucla.sspace.util.Pair;
-import edu.ucla.sspace.util.SortedMultiMap;
-import edu.ucla.sspace.util.TreeMultiMap;
-import edu.ucla.sspace.util.WorkQueue;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-
-import java.util.Arrays;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Queue;
-import java.util.Set;
-
-import java.util.logging.Logger;
+import java.util.*;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static edu.ucla.sspace.util.LoggerUtil.info;
 import static edu.ucla.sspace.util.LoggerUtil.verbose;
-import static edu.ucla.sspace.util.LoggerUtil.veryVerbose;
 
 public class IterativeBigramExtractor {
 
