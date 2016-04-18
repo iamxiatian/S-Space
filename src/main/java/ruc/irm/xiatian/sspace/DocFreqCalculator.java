@@ -149,6 +149,7 @@ public class DocFreqCalculator {
                 }
                 vsm.processSpace(new Properties());
                 System.out.printf("Vsm has %d docs and %d words%n",vsm.documentSpaceSize(), vsm.getWords().size());
+                result.put("documentSize",(long)vsm.documentSpaceSize());
                 for(String w : vsm.getWords()){
                     DoubleVector vector = (DoubleVector)vsm.getVector(w);
                     for(int j=0; j<vector.length(); j++) {
